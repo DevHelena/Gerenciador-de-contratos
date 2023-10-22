@@ -5,7 +5,7 @@ import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import TextField from '@mui/material/TextField'
-import Button from '@mui/material/Button';
+import Button from '@mui/material/Button'
 
 export const NovoContrato = () => {
   // States
@@ -27,23 +27,70 @@ export const NovoContrato = () => {
   const [carencia, setCarencia] = useState('')
   const [valor, setValor] = useState('')
   const [parcelas, setParcelas] = useState('')
-  // COMO BUSCAR ESSES DADOS
   const [inicioVigencia, setInicioVigencia] = useState('')
   const [finalVigencia, setFinalVigencia] = useState('')
 
+  const [isContractActive, setIsContractActive] = useState(false)
+
   const dados = [empresaContratante,cnpjContratante,ruaContratante,numeroContratante,estadoContratante,cidadeContratante,empresaContratado,cnpjContratado,ruaContratado,numeroContratado,estadoContratado,cidadeContratado,tipoContrato,carencia,valor,parcelas,inicioVigencia,finalVigencia] 
   const dadosPreenchidos = dados.every(item => item !== '')
-  console.log(dados)
-
-  const [isContractActive, setIsContractActive] = useState(false)
 
   //Dados forms
   const tiposContratoList = ['Empréstimos', 'Arrendamento', 'Seguro', 'Locação de Serviços', 'Equipamentos']
-  const financeiro = ['Carência', 'Valor', 'Parcelas']
 
-  const handleChange = (event) => {
-    setTipoContrato(event.target.value);
-  };
+  const formData = {
+    contratante: {
+      empresa: empresaContratante,
+      cnpj: cnpjContratante,
+      rua: ruaContratante,
+      numero: numeroContratante,
+      estado: estadoContratante,
+      cidade: cidadeContratante,
+    },
+    contratado: {
+      empresa: empresaContratado,
+      cnpj: cnpjContratado,
+      rua: ruaContratado,
+      numero: numeroContratado,
+      estado: estadoContratado,
+      cidade: cidadeContratado,
+    },
+    tipoContrato,
+    carencia,
+    valor,
+    parcelas,
+    inicioVigencia,
+    finalVigencia,
+    isContractActive,
+  }
+
+  //functions
+  function handleSaveForm() {
+    const endpoint = 'http://localhost:5000/api/salvar-formulario'
+  
+    fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((response) => {
+        if (response.ok) {
+          console.log('Dados enviados com sucesso.')
+          // Você pode adicionar aqui qualquer código que deseja executar após o envio bem-sucedido
+        } else {
+          console.error('Falha ao enviar dados.')
+        }
+      })
+      .catch((error) => {
+        console.error('Erro ao enviar dados:', error)
+      });
+  }
+
+  function handleActiveContract () {
+    setIsContractActive(true)
+  }
 
   return (
     <div className='novoContrato'>
@@ -54,7 +101,7 @@ export const NovoContrato = () => {
         <>
         <h2 className='form-subtitulo'>Contratante</h2>
         <div className='inputs'>
-          <TextField helperText=" " label='Empresa' variant="outlined" size='small' style={{ width: '350px' }} 
+          <TextField helperText=" " label='Empresa' className='empresa' variant="outlined" size='small' style={{ width: '350px' }} 
           value={empresaContratante} 
           onChange={(e) => setEmpresaContratante(e.target.value)}/>
         </div>
@@ -87,7 +134,7 @@ export const NovoContrato = () => {
         <>
         <h2 className='form-subtitulo'>Contratado</h2>
         <div className='inputs'>
-          <TextField helperText=" " label='Empresa' variant="outlined" size='small' style={{ width: '350px' }} 
+          <TextField helperText=" " label='Empresa' className='empresa' variant="outlined" size='small' style={{ width: '350px' }} 
           value={empresaContratado} 
           onChange={(e) => setEmpresaContratado(e.target.value)}/>
         </div>
@@ -127,9 +174,8 @@ export const NovoContrato = () => {
               id="demo-simple-select"
               value={tipoContrato}
               label="Tipo do Contrato"
-              onChange={handleChange}
+              onChange={(e) => setTipoContrato(e.target.value)}
               size='small'
-              helperText=" "
             >
             {tiposContratoList.map((tipo, index) => (
               <MenuItem key={index} value={tipo}> {tipo} </MenuItem>
@@ -138,20 +184,27 @@ export const NovoContrato = () => {
           </FormControl>
         </div>
 
-        {financeiro.map((info, index) => (
-          <div className='inputs'>
-            <TextField helperText=" " label={info} key={index} variant="outlined" size='small' type={info === 'Valor' ? 'number' : 'text'}/>
-          </div>
-        ))}
-
-        <div className='inputs'><TextField helperText="Data do início da vigência" label='' variant="outlined" size='small' type='date' style={{width: '210px'}}/></div>
-        <div className='inputs'><TextField helperText="Data do término da vigência" label='' variant="outlined" size='small' type='date' style={{width: '210px'}}/></div>
+        <div className='inputs'>
+          <TextField helperText=" " label='Carência' variant="outlined" size='small' value={carencia} onChange={(e) => setCarencia(e.target.value)}/>
+        </div>          
+        <div className='inputs'>
+          <TextField helperText=" " label='Valor' variant="outlined" size='small' type='number' value={valor} onChange={(e) => setValor(e.target.value)}/>
+        </div>          
+        <div className='inputs'>
+          <TextField helperText=" " label='Parcelas' variant="outlined" size='small' type='number' value={parcelas} onChange={(e) => setParcelas(e.target.value)}/>
+        </div>
+        <div className='inputs'>
+          <TextField helperText="Data do início da vigência" label='' variant="outlined" size='small' type='date' style={{width: '210px'}} value={inicioVigencia} onChange={(e) => setInicioVigencia(e.target.value)}/>
+        </div>
+        <div className='inputs'>
+          <TextField helperText="Data do término da vigência" label='' variant="outlined" size='small' type='date' style={{width: '210px'}} value={finalVigencia} onChange={(e) => setFinalVigencia(e.target.value)}/>
+        </div>
 
         <div className='button-group'>
-          <Button variant="contained">Salvar</Button>
+          <Button variant="contained" onClick={handleSaveForm}>Salvar</Button>
           {
             dadosPreenchidos ? (
-              <Button variant="contained">Ativar Contrato</Button>
+              <Button variant="contained" onClick={handleActiveContract}>Ativar Contrato</Button>
             ) : 
               <Button variant="contained" disabled>Ativar Contrato</Button>
           }

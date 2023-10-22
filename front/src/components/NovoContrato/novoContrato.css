@@ -5,7 +5,6 @@
 }
 
 .container{
-    width: 70vw;
     max-width: 700px;
     margin: 20px;
     padding: 20px;
@@ -56,3 +55,40 @@
     margin: 15px;
 }
 
+@media (max-width: 797px){
+    .container {
+        padding: 0;
+        border: none;
+        margin: 10px;
+    }
+}
+
+@media (max-width: 735px) {
+    .MuiFormControl-root, .MuiInputBase-root{
+        width: 29vw !important;
+    }
+    .form {
+        justify-content: space-around;
+    }
+}
+
+@media (max-width: 680px) {
+    .MuiFormControl-root, .MuiInputBase-root{
+        width: 43vw !important;
+    }
+}
+
+@media (max-width: 536px) {
+    .MuiFormControl-root, .MuiInputBase-root{
+        width: 80vw !important;
+    }
+    .form-subtitulo, .form-titulo{
+        width: 80vw;
+        margin: auto;     
+        padding: 10px 0;   
+    }
+    .container{ 
+        margin: 0;
+        margin-top: 15px;
+    }
+}

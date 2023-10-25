@@ -1,13 +1,19 @@
 import React, { useState } from 'react'
-import './novoContrato.css'
+import { Header } from '../Header/Header'
+import { Footer } from '../Footer/Footer'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
 import Select from '@mui/material/Select'
 import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
+import { Link } from 'react-router-dom'
+import { v4 as uuidv4 } from 'uuid'
+import './novoContrato.css'
+import './modal.css'
 
-export const NovoContrato = () => {
+
+const NovoContrato = () => {
   // States
   const [empresaContratante, setEmpresaContratante] = useState('')
   const [cnpjContratante, setCnpjContratante] = useState('')
@@ -15,27 +21,28 @@ export const NovoContrato = () => {
   const [numeroContratante, setNumeroContratante] = useState('')
   const [estadoContratante, setEstadoContratante] = useState('')
   const [cidadeContratante, setCidadeContratante] = useState('')
-  
   const [empresaContratado, setEmpresaContratado] = useState('')
   const [cnpjContratado, setCnpjContratado] = useState('')
   const [ruaContratado, setRuaContratado] = useState('')
   const [numeroContratado, setNumeroContratado] = useState('')
   const [estadoContratado, setEstadoContratado] = useState('')
   const [cidadeContratado, setCidadeContratado] = useState('')
-
   const [tipoContrato, setTipoContrato] = useState('')
   const [carencia, setCarencia] = useState('')
   const [valor, setValor] = useState('')
   const [parcelas, setParcelas] = useState('')
   const [inicioVigencia, setInicioVigencia] = useState('')
   const [finalVigencia, setFinalVigencia] = useState('')
-
   const [isContractActive, setIsContractActive] = useState(false)
+  const [key, setKey] = useState('')
+  
+  const [isContractSave, setIsContractSave] = useState(false)
 
-  const dados = [empresaContratante,cnpjContratante,ruaContratante,numeroContratante,estadoContratante,cidadeContratante,empresaContratado,cnpjContratado,ruaContratado,numeroContratado,estadoContratado,cidadeContratado,tipoContrato,carencia,valor,parcelas,inicioVigencia,finalVigencia] 
+  
+
+  const dados = [empresaContratante,cnpjContratante,ruaContratante,numeroContratante,estadoContratante,cidadeContratante,empresaContratado,cnpjContratado,ruaContratado,numeroContratado,estadoContratado,cidadeContratado,tipoContrato,carencia,valor,parcelas,inicioVigencia,finalVigencia, isContractActive, key] 
   const dadosPreenchidos = dados.every(item => item !== '')
 
-  //Dados forms
   const tiposContratoList = ['Empréstimos', 'Arrendamento', 'Seguro', 'Locação de Serviços', 'Equipamentos']
 
   const formData = {
@@ -62,11 +69,15 @@ export const NovoContrato = () => {
     inicioVigencia,
     finalVigencia,
     isContractActive,
+    key,
   }
 
   //functions
   function handleSaveForm() {
     const endpoint = 'http://localhost:5000/api/salvar-formulario'
+    const contractKey = uuidv4()
+
+    setKey(contractKey)
   
     fetch(endpoint, {
       method: 'POST',
@@ -78,6 +89,7 @@ export const NovoContrato = () => {
       .then((response) => {
         if (response.ok) {
           console.log('Dados enviados com sucesso.')
+          setIsContractSave(true)
           // Você pode adicionar aqui qualquer código que deseja executar após o envio bem-sucedido
         } else {
           console.error('Falha ao enviar dados.')
@@ -85,15 +97,22 @@ export const NovoContrato = () => {
       })
       .catch((error) => {
         console.error('Erro ao enviar dados:', error)
-      });
+      })
   }
 
   function handleActiveContract () {
     setIsContractActive(true)
   }
 
+  function handleDesativeContract () {
+    setIsContractActive(false)
+  }
+
   return (
+    <>
+    <Header />
     <div className='novoContrato'>
+
     <div className='container'>
       <h1 className='form-titulo'>Novo contrato</h1>
       <form className='form'>
@@ -203,15 +222,36 @@ export const NovoContrato = () => {
         <div className='button-group'>
           <Button variant="contained" onClick={handleSaveForm}>Salvar</Button>
           {
-            dadosPreenchidos ? (
-              <Button variant="contained" onClick={handleActiveContract}>Ativar Contrato</Button>
+            !isContractActive ? (
+              dadosPreenchidos ? (<Button variant="contained" onClick={handleActiveContract}>Ativar Contrato</Button>)
+              : <Button variant="contained" disabled>Ativar Contrato</Button>
             ) : 
-              <Button variant="contained" disabled>Ativar Contrato</Button>
+              <Button variant="contained" onClick={handleDesativeContract}>Desativar Contrato</Button>
           }
           
         </div>
       </form>
     </div>
-    </div>
+
+    { isContractSave ? <ModalContractSave /> : <></> }
+    </div>    
+    <Footer />
+    </>
   );
 }
+
+const ModalContractSave = () => {
+  return (
+    <div className='modal'>
+      <div className='modal-container'>
+        <p>Contrato salvo com sucesso!</p>
+        <div className='modal-button'>
+          <Button variant="contained" size="small"><Link to='/dashboard'>Dashboard</Link></Button>
+          <Button variant="contained" size="small">Ver Contrato</Button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default NovoContrato

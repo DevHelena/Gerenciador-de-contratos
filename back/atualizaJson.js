@@ -1,31 +1,35 @@
-const { v4: uuidv4 } = require('uuid');
+const { v4: uuidv4 } = require('uuid')
 const fs = require('fs')
+const { log } = require('console')
 
-let contractList = []
-
-function saveContract(contrato) {
-    contractList = getContractList()
-    contrato.key = uuidv4()
-    contractList.push(contrato)
-    const contractsJSON = JSON.stringify(contractList, null, 2)
-    fs.writeFileSync('contratos.json', contractsJSON, 'utf8')
-    return contrato.key
+function saveContract(novoContrato) {
+  contractList = readJSON()
+  novoContrato.key = uuidv4()
+  contractList.contratos.push(novoContrato)
+  const contractsJSON = JSON.stringify(contractList, null, 2)
+  fs.writeFileSync('contratos.json', contractsJSON, 'utf8')
+  return novoContrato.key
 }
 
-function getContractList() {
-    try {
-        const data = fs.readFileSync('contratos.json', 'utf8')
-        const contracts = JSON.parse(data)
-        return contracts
-    } catch (err) {
-        console.error(err)
-        return []
+function readJSON() {
+  try {
+    const conteudo = fs.readFileSync('contratos.json', 'utf8')
+    if (conteudo.trim() === '') {
+      const novoJSON = { contratos: [] }
+      fs.writeFileSync('contratos.json', JSON.stringify(novoJSON, null, 2))
+      return novoJSON;
+    } else {
+      return JSON.parse(conteudo);
     }
+  } catch (error) {
+    console.error('Erro ao ler o arquivo JSON:', error);
+    return null;
+  }
 }
 
 module.exports = {
     saveContract,
-    getContractList,
+    readJSON,
 }
 
 

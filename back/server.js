@@ -5,7 +5,7 @@ const cors = require('cors')
 const PORT = process.env.PORT || 5000
 
 //modules
-const {saveContract, getContractList} = require('./atualizaJson')
+const {saveContract, readJSON} = require('./atualizaJson')
 
 dotenv.config();
 app.use(cors());
@@ -18,8 +18,10 @@ app.post('/api/salvar-formulario', (req, res) => {
   res.send('Dados recebidos com sucesso!')
 })
 
-app.get('api/formularios', (req, res) => {
-  res.json(getContractList())
+app.get('/api/formularios', (req, res) => {
+  const contratos = readJSON()
+  console.log(contratos)
+  res.json(contratos)
 })
 
 app.listen(PORT, () => {

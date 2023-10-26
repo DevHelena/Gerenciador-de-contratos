@@ -1,0 +1,30 @@
+{
+  "contratos": [
+    {
+      "contratante": {
+        "empresa": "",
+        "cnpj": "",
+        "rua": "",
+        "numero": "",
+        "estado": "",
+        "cidade": ""
+      },
+      "contratado": {
+        "empresa": "",
+        "cnpj": "",
+        "rua": "",
+        "numero": "",
+        "estado": "",
+        "cidade": ""
+      },
+      "tipoContrato": "",
+      "carencia": "",
+      "valor": "",
+      "parcelas": "",
+      "inicioVigencia": "",
+      "finalVigencia": "",
+      "isContractActive": false,
+      "key": "cfa1eef6-17fc-4200-9106-c6cedd44460e"
+    }
+  ]
+}

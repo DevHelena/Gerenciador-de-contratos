@@ -32,6 +32,10 @@
     font-weight: 500;
 }
 
+.this-page {
+    transform: scale(107%);
+}
+
 @media (max-width: 1050px) {
     .logo{
         width: 150px;

@@ -10,7 +10,6 @@ import Button from '@mui/material/Button'
 import { Link } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
 import './novoContrato.css'
-import './modal.css'
 
 
 const NovoContrato = () => {
@@ -88,7 +87,6 @@ const NovoContrato = () => {
     })
       .then((response) => {
         if (response.ok) {
-          console.log('Dados enviados com sucesso.')
           setIsContractSave(true)
           // Você pode adicionar aqui qualquer código que deseja executar após o envio bem-sucedido
         } else {
@@ -110,147 +108,131 @@ const NovoContrato = () => {
 
   return (
     <>
-    <Header />
-    <div className='novoContrato'>
+      <Header thisPage={'novocontrato'}/>
+      
+      <div className='body-component'>
+      <div className='container'>
+        <h1 className='form-titulo'>Novo contrato</h1>
+        <form className='form'>
 
-    <div className='container'>
-      <h1 className='form-titulo'>Novo contrato</h1>
-      <form className='form'>
+          <>
+          <h2 className='form-subtitulo'>Contratante</h2>
+          <div className='inputs'>
+            <TextField helperText=" " label='Empresa' className='empresa' variant="outlined" size='small' style={{ width: '350px' }} 
+            value={empresaContratante} 
+            onChange={(e) => setEmpresaContratante(e.target.value)}/>
+          </div>
+          <div className='inputs'>
+            <TextField helperText=" " label='CNPJ' type='number' variant="outlined" size='small' style={{ width: '300px' }}
+            value={cnpjContratante} 
+            onChange={(e) => setCnpjContratante(e.target.value)}/>
+          </div>
+          <div className='inputs'>
+            <TextField helperText=" " label='Rua'  variant="outlined" size='small' style={{ width: '450px' }}
+            value={ruaContratante} 
+            onChange={(e) => setRuaContratante(e.target.value)}/>
+          </div>
+          <div className='inputs'>
+            <TextField helperText=" " label='Número' type='number' variant="outlined" size='small' style={{ width: '200px' }}
+            value={numeroContratante} 
+            onChange={(e) => setNumeroContratante(e.target.value)}/>
+          </div>
+          <div className='inputs'>
+            <TextField helperText=" " label='Estado'  variant="outlined" size='small' style={{ width: '325px' }}
+            value={estadoContratante} 
+            onChange={(e) => setEstadoContratante(e.target.value)}/>
+          </div>
+          <div className='inputs'>
+            <TextField helperText=" " label='Cidade'  variant="outlined" size='small' style={{ width: '325px' }}
+            value={cidadeContratante} 
+            onChange={(e) => setCidadeContratante(e.target.value)}/>
+          </div>
+          </>
+          <>
+          <h2 className='form-subtitulo'>Contratado</h2>
+          <div className='inputs'>
+            <TextField helperText=" " label='Empresa' className='empresa' variant="outlined" size='small' style={{ width: '350px' }} 
+            value={empresaContratado} 
+            onChange={(e) => setEmpresaContratado(e.target.value)}/>
+          </div>
+          <div className='inputs'>
+            <TextField helperText=" " label='CNPJ' type='number' variant="outlined" size='small' style={{ width: '300px' }}
+            value={cnpjContratado} 
+            onChange={(e) => setCnpjContratado(e.target.value)}/>
+          </div>
+          <div className='inputs'>
+            <TextField helperText=" " label='Rua'  variant="outlined" size='small' style={{ width: '450px' }}
+            value={ruaContratado} 
+            onChange={(e) => setRuaContratado(e.target.value)}/>
+          </div>
+          <div className='inputs'>
+            <TextField helperText=" " label='Número' type='number' variant="outlined" size='small' style={{ width: '200px' }}
+            value={numeroContratado} 
+            onChange={(e) => setNumeroContratado(e.target.value)}/>
+          </div>
+          <div className='inputs'>
+            <TextField helperText=" " label='Estado'  variant="outlined" size='small' style={{ width: '325px' }}
+            value={estadoContratado} 
+            onChange={(e) => setEstadoContratado(e.target.value)}/>
+          </div>
+          <div className='inputs'>
+            <TextField helperText=" " label='Cidade'  variant="outlined" size='small' style={{ width: '325px' }}
+            value={cidadeContratado} 
+            onChange={(e) => setCidadeContratado(e.target.value)}/>
+          </div>
+          </>
 
-        <>
-        <h2 className='form-subtitulo'>Contratante</h2>
-        <div className='inputs'>
-          <TextField helperText=" " label='Empresa' className='empresa' variant="outlined" size='small' style={{ width: '350px' }} 
-          value={empresaContratante} 
-          onChange={(e) => setEmpresaContratante(e.target.value)}/>
-        </div>
-        <div className='inputs'>
-          <TextField helperText=" " label='CNPJ' type='number' variant="outlined" size='small' style={{ width: '300px' }}
-          value={cnpjContratante} 
-          onChange={(e) => setCnpjContratante(e.target.value)}/>
-        </div>
-        <div className='inputs'>
-          <TextField helperText=" " label='Rua'  variant="outlined" size='small' style={{ width: '450px' }}
-          value={ruaContratante} 
-          onChange={(e) => setRuaContratante(e.target.value)}/>
-        </div>
-        <div className='inputs'>
-          <TextField helperText=" " label='Número' type='number' variant="outlined" size='small' style={{ width: '200px' }}
-          value={numeroContratante} 
-          onChange={(e) => setNumeroContratante(e.target.value)}/>
-        </div>
-        <div className='inputs'>
-          <TextField helperText=" " label='Estado'  variant="outlined" size='small' style={{ width: '325px' }}
-          value={estadoContratante} 
-          onChange={(e) => setEstadoContratante(e.target.value)}/>
-        </div>
-        <div className='inputs'>
-          <TextField helperText=" " label='Cidade'  variant="outlined" size='small' style={{ width: '325px' }}
-          value={cidadeContratante} 
-          onChange={(e) => setCidadeContratante(e.target.value)}/>
-        </div>
-        </>
-        <>
-        <h2 className='form-subtitulo'>Contratado</h2>
-        <div className='inputs'>
-          <TextField helperText=" " label='Empresa' className='empresa' variant="outlined" size='small' style={{ width: '350px' }} 
-          value={empresaContratado} 
-          onChange={(e) => setEmpresaContratado(e.target.value)}/>
-        </div>
-        <div className='inputs'>
-          <TextField helperText=" " label='CNPJ' type='number' variant="outlined" size='small' style={{ width: '300px' }}
-          value={cnpjContratado} 
-          onChange={(e) => setCnpjContratado(e.target.value)}/>
-        </div>
-        <div className='inputs'>
-          <TextField helperText=" " label='Rua'  variant="outlined" size='small' style={{ width: '450px' }}
-          value={ruaContratado} 
-          onChange={(e) => setRuaContratado(e.target.value)}/>
-        </div>
-        <div className='inputs'>
-          <TextField helperText=" " label='Número' type='number' variant="outlined" size='small' style={{ width: '200px' }}
-          value={numeroContratado} 
-          onChange={(e) => setNumeroContratado(e.target.value)}/>
-        </div>
-        <div className='inputs'>
-          <TextField helperText=" " label='Estado'  variant="outlined" size='small' style={{ width: '325px' }}
-          value={estadoContratado} 
-          onChange={(e) => setEstadoContratado(e.target.value)}/>
-        </div>
-        <div className='inputs'>
-          <TextField helperText=" " label='Cidade'  variant="outlined" size='small' style={{ width: '325px' }}
-          value={cidadeContratado} 
-          onChange={(e) => setCidadeContratado(e.target.value)}/>
-        </div>
-        </>
+          <h2 className='form-subtitulo'>Informações Gerais</h2>
+          <div className='inputs'>
+            <FormControl fullWidth sx={{ minWidth: '200px' }}>
+              <InputLabel id="demo-simple-select-label">Tipo do Contrato</InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={tipoContrato}
+                label="Tipo do Contrato"
+                onChange={(e) => setTipoContrato(e.target.value)}
+                size='small'
+              >
+              {tiposContratoList.map((tipo, index) => (
+                <MenuItem key={index} value={tipo}> {tipo} </MenuItem>
+              ))}
+              </Select>
+            </FormControl>
+          </div>
 
-        <h2 className='form-subtitulo'>Informações Gerais</h2>
-        <div className='inputs'>
-          <FormControl fullWidth sx={{ minWidth: '200px' }}>
-            <InputLabel id="demo-simple-select-label">Tipo do Contrato</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={tipoContrato}
-              label="Tipo do Contrato"
-              onChange={(e) => setTipoContrato(e.target.value)}
-              size='small'
-            >
-            {tiposContratoList.map((tipo, index) => (
-              <MenuItem key={index} value={tipo}> {tipo} </MenuItem>
-            ))}
-            </Select>
-          </FormControl>
-        </div>
+          <div className='inputs'>
+            <TextField helperText=" " label='Carência' variant="outlined" size='small' value={carencia} onChange={(e) => setCarencia(e.target.value)}/>
+          </div>          
+          <div className='inputs'>
+            <TextField helperText=" " label='Valor' variant="outlined" size='small' type='number' value={valor} onChange={(e) => setValor(e.target.value)}/>
+          </div>          
+          <div className='inputs'>
+            <TextField helperText=" " label='Parcelas' variant="outlined" size='small' type='number' value={parcelas} onChange={(e) => setParcelas(e.target.value)}/>
+          </div>
+          <div className='inputs'>
+            <TextField helperText="Data do início da vigência" label='' variant="outlined" size='small' type='date' style={{width: '210px'}} value={inicioVigencia} onChange={(e) => setInicioVigencia(e.target.value)}/>
+          </div>
+          <div className='inputs'>
+            <TextField helperText="Data do término da vigência" label='' variant="outlined" size='small' type='date' style={{width: '210px'}} value={finalVigencia} onChange={(e) => setFinalVigencia(e.target.value)}/>
+          </div>
 
-        <div className='inputs'>
-          <TextField helperText=" " label='Carência' variant="outlined" size='small' value={carencia} onChange={(e) => setCarencia(e.target.value)}/>
-        </div>          
-        <div className='inputs'>
-          <TextField helperText=" " label='Valor' variant="outlined" size='small' type='number' value={valor} onChange={(e) => setValor(e.target.value)}/>
-        </div>          
-        <div className='inputs'>
-          <TextField helperText=" " label='Parcelas' variant="outlined" size='small' type='number' value={parcelas} onChange={(e) => setParcelas(e.target.value)}/>
-        </div>
-        <div className='inputs'>
-          <TextField helperText="Data do início da vigência" label='' variant="outlined" size='small' type='date' style={{width: '210px'}} value={inicioVigencia} onChange={(e) => setInicioVigencia(e.target.value)}/>
-        </div>
-        <div className='inputs'>
-          <TextField helperText="Data do término da vigência" label='' variant="outlined" size='small' type='date' style={{width: '210px'}} value={finalVigencia} onChange={(e) => setFinalVigencia(e.target.value)}/>
-        </div>
-
-        <div className='button-group'>
-          <Button variant="contained" onClick={handleSaveForm}>Salvar</Button>
-          {
-            !isContractActive ? (
-              dadosPreenchidos ? (<Button variant="contained" onClick={handleActiveContract}>Ativar Contrato</Button>)
-              : <Button variant="contained" disabled>Ativar Contrato</Button>
-            ) : 
-              <Button variant="contained" onClick={handleDesativeContract}>Desativar Contrato</Button>
-          }
-          
-        </div>
-      </form>
-    </div>
-
-    { isContractSave ? <ModalContractSave /> : <></> }
-    </div>    
-    <Footer />
-    </>
-  );
-}
-
-const ModalContractSave = () => {
-  return (
-    <div className='modal'>
-      <div className='modal-container'>
-        <p>Contrato salvo com sucesso!</p>
-        <div className='modal-button'>
-          <Button variant="contained" size="small"><Link to='/dashboard'>Dashboard</Link></Button>
-          <Button variant="contained" size="small">Ver Contrato</Button>
-        </div>
+          <div className='button-group'>
+            <Button variant="contained" onClick={handleSaveForm}><Link to='/dashboard'>Salvar</Link></Button>
+            {
+              !isContractActive ? (
+                dadosPreenchidos ? (<Button variant="contained" onClick={handleActiveContract}>Ativar Contrato</Button>)
+                : <Button variant="contained" disabled>Ativar Contrato</Button>
+              ) : 
+                <Button variant="contained" onClick={handleDesativeContract}>Desativar Contrato</Button>
+            }
+            
+          </div>
+        </form>
       </div>
-    </div>
+      </div>    
+      <Footer />
+    </>
   )
 }
 

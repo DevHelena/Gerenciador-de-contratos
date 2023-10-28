@@ -1,22 +1,17 @@
 import React, { useState, useEffect } from 'react'
 import { Header } from '../Header/Header'
 import { Footer } from '../Footer/Footer'
+import { getDashbaord } from '../../operations/api/dashboard'
 
 const Dashboard = () => {
-  const [formList, setFormList] = useState([])
+  const [contractList, setContractList] = useState([])
 
-    useEffect(() => {
-      // Realiza a requisição GET para buscar a lista de formulários
-      fetch('/api/formularios')
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data)
-          setFormList(data)
-        })
-        .catch((error) => {
-          console.error('Erro ao buscar a lista de formulários:', error)
-        })
-    }, [])
+  useEffect(() => {
+      getDashbaord().then((req) => {
+        console.log(req);
+        setContractList(req.contratos)
+      })
+  }, [])
 
   return (
     <>
@@ -24,9 +19,42 @@ const Dashboard = () => {
       <div className='body-component'>
       <div className='container'>
         <ul>
-          {formList.map((formData, index) => (
-            <li key={index}>{JSON.stringify(formData)}</li>
-          ))}
+        {
+          contractList && contractList.length > 0 
+          ? 
+          contractList.map((e)=>(
+            <>
+            <h3>CONTRATANTE</h3>
+            <li>{e.contratante.empresa}</li>
+            <li>{e.contratante.cnpj}</li>
+            <li>{e.contratante.rua}</li>
+            <li>{e.contratante.numero}</li>
+            <li>{e.contratante.estado}</li>
+            <li>{e.contratante.cidade}</li>
+            </>
+          ))
+          : 
+          <li>Não encontrado CONTRATANTE</li>
+        }
+        </ul>
+        <ul>
+        {
+          contractList && contractList.length > 0 
+          ? 
+          contractList.map((e)=>(
+            <>
+            <h3>CONTRATADO</h3>
+            <li>{e.contratado.empresa}</li>
+            <li>{e.contratado.cnpj}</li>
+            <li>{e.contratado.rua}</li>
+            <li>{e.contratado.numero}</li>
+            <li>{e.contratado.estado}</li>
+            <li>{e.contratado.cidade}</li>
+            </>
+          ))
+          : 
+          <li>Não encontrado CONTRATADO</li>
+        }
         </ul>
       </div>
       </div>

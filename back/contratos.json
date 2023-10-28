@@ -2,7 +2,33 @@
   "contratos": [
     {
       "contratante": {
-        "empresa": "",
+        "empresa": "Helena",
+        "cnpj": "",
+        "rua": "",
+        "numero": "",
+        "estado": "",
+        "cidade": ""
+      },
+      "contratado": {
+        "empresa": "Humberto",
+        "cnpj": "",
+        "rua": "",
+        "numero": "",
+        "estado": "",
+        "cidade": ""
+      },
+      "tipoContrato": "",
+      "carencia": "",
+      "valor": "",
+      "parcelas": "",
+      "inicioVigencia": "",
+      "finalVigencia": "",
+      "isContractActive": false,
+      "key": "91291bca-4569-45b0-b69d-447bc0e48c8d"
+    },
+    {
+      "contratante": {
+        "empresa": "1",
         "cnpj": "",
         "rua": "",
         "numero": "",
@@ -24,7 +50,7 @@
       "inicioVigencia": "",
       "finalVigencia": "",
       "isContractActive": false,
-      "key": "cfa1eef6-17fc-4200-9106-c6cedd44460e"
+      "key": "29a0d78e-d129-40af-bf2a-ac6d922c667a"
     }
   ]
 }

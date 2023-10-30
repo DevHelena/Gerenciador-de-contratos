@@ -1,0 +1,38 @@
+.contratos-lista {
+    margin: 0;
+    padding: 0;
+    width: 700px;
+}
+
+.contratos {
+    margin-top: 20px;
+    text-decoration: none;
+    list-style-type: none;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    cursor: pointer;
+}
+.contratos:hover{
+    background-color: rgb(240, 240, 240);
+}
+
+.contratos div{
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.contratos div p {
+    margin: 0 8px;
+    color: #494949;
+}
+
+.contrato-empresas p {
+    font-weight: 600;
+}
+
+.contrato-info {
+
+}
+

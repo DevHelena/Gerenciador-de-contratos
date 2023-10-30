@@ -2,55 +2,103 @@
   "contratos": [
     {
       "contratante": {
-        "empresa": "Helena",
-        "cnpj": "",
-        "rua": "",
-        "numero": "",
-        "estado": "",
-        "cidade": ""
+        "empresa": "Irmãos Gonçalves",
+        "cnpj": "76820757",
+        "rua": "Avenida Jorje Texeira",
+        "numero": "123",
+        "estado": "Rondônia",
+        "cidade": "Jaru"
       },
       "contratado": {
-        "empresa": "Humberto",
-        "cnpj": "",
-        "rua": "",
-        "numero": "",
-        "estado": "",
-        "cidade": ""
+        "empresa": "Distribuidora Coimbra",
+        "cnpj": "76820757",
+        "rua": "Avenida Sete de Setembro",
+        "numero": "156",
+        "estado": "Rondônia",
+        "cidade": "Porto Velho"
       },
-      "tipoContrato": "",
-      "carencia": "",
-      "valor": "",
-      "parcelas": "",
-      "inicioVigencia": "",
-      "finalVigencia": "",
-      "isContractActive": false,
-      "key": "91291bca-4569-45b0-b69d-447bc0e48c8d"
+      "tipoContrato": "Arrendamento",
+      "carencia": "Alguma Coisa",
+      "valor": "100000",
+      "parcelas": "5",
+      "inicioVigencia": "2023-10-18",
+      "finalVigencia": "2024-10-17",
+      "key": "ad8bb758-04ed-4531-b1a1-1eefaaeb63bc"
     },
     {
       "contratante": {
-        "empresa": "1",
-        "cnpj": "",
-        "rua": "",
-        "numero": "",
-        "estado": "",
-        "cidade": ""
+        "empresa": "Irmãos Gonçalves",
+        "cnpj": "76820757",
+        "rua": "Avenida Jorje Texeira",
+        "numero": "123",
+        "estado": "Rondônia",
+        "cidade": "Jaru"
       },
       "contratado": {
-        "empresa": "",
-        "cnpj": "",
-        "rua": "",
-        "numero": "",
-        "estado": "",
-        "cidade": ""
+        "empresa": "Barbosa Materiais Elétricos e Hidráulicos",
+        "cnpj": "76820757",
+        "rua": "Avenida Sete de Setembro",
+        "numero": "156",
+        "estado": "Rondônia",
+        "cidade": "Porto Velho"
       },
-      "tipoContrato": "",
-      "carencia": "",
-      "valor": "",
-      "parcelas": "",
-      "inicioVigencia": "",
-      "finalVigencia": "",
-      "isContractActive": false,
-      "key": "29a0d78e-d129-40af-bf2a-ac6d922c667a"
+      "tipoContrato": "Arrendamento",
+      "carencia": "Alguma Coisa",
+      "valor": "100000",
+      "parcelas": "5",
+      "inicioVigencia": "2023-10-18",
+      "finalVigencia": "2024-10-17",
+      "key": "ad8bb758-04ed-4531-b1a1-1eefaaeb63bc"
+    },
+    {
+      "contratante": {
+        "empresa": "Magazine Luiza",
+        "cnpj": "76820757",
+        "rua": "Avenida Jorje Texeira",
+        "numero": "123",
+        "estado": "Rondônia",
+        "cidade": "Jaru"
+      },
+      "contratado": {
+        "empresa": "Distribuidora Coimbra",
+        "cnpj": "76820757",
+        "rua": "Avenida Sete de Setembro",
+        "numero": "156",
+        "estado": "Rondônia",
+        "cidade": "Porto Velho"
+      },
+      "tipoContrato": "Arrendamento",
+      "carencia": "Alguma Coisa",
+      "valor": "100000",
+      "parcelas": "5",
+      "inicioVigencia": "2023-10-18",
+      "finalVigencia": "2024-10-17",
+      "key": "ad8bb758-04ed-4531-b1a1-1eefaaeb63bc"
+    },
+    {
+      "contratante": {
+        "empresa": "Americanas",
+        "cnpj": "76820757",
+        "rua": "Avenida Jorje Texeira",
+        "numero": "123",
+        "estado": "Rondônia",
+        "cidade": "Jaru"
+      },
+      "contratado": {
+        "empresa": "Distribuidora Coimbra",
+        "cnpj": "76820757",
+        "rua": "Avenida Sete de Setembro",
+        "numero": "156",
+        "estado": "Rondônia",
+        "cidade": "Porto Velho"
+      },
+      "tipoContrato": "Locação de Serviços",
+      "carencia": "Alguma Coisa",
+      "valor": "100000",
+      "parcelas": "5",
+      "inicioVigencia": "2023-10-18",
+      "finalVigencia": "2024-10-17",
+      "key": "ad8bb758-04ed-4531-b1a1-1eefaaeb63bc"
     }
   ]
 }

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Route, BrowserRouter, Routes } from 'react-router-dom'
-import NovoContrato from './components/NovoContrato/NovoContrato'
-import Dashboard from './components/Dashboard/Dashboard'
-import Sobre from './components/Sobre/Sobre'
+import NovoContrato from './pages/NovoContrato/NovoContrato'
+import Dashboard from './pages/Dashboard/Dashboard'
+import Sobre from './pages/Sobre/Sobre'
 
 function App() {
   return (

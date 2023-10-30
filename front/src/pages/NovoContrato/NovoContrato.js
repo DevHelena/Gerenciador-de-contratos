@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Header } from '../Header/Header'
-import { Footer } from '../Footer/Footer'
+import { Footer } from '../../components/Footer/Footer'
+import { Header } from '../../components/Header/Header'
 import InputLabel from '@mui/material/InputLabel'
 import MenuItem from '@mui/material/MenuItem'
 import FormControl from '@mui/material/FormControl'
@@ -32,14 +32,13 @@ const NovoContrato = () => {
   const [parcelas, setParcelas] = useState('')
   const [inicioVigencia, setInicioVigencia] = useState('')
   const [finalVigencia, setFinalVigencia] = useState('')
-  const [isContractActive, setIsContractActive] = useState(false)
   const [key, setKey] = useState('')
   
   const [isContractSave, setIsContractSave] = useState(false)
 
   
 
-  const dados = [empresaContratante,cnpjContratante,ruaContratante,numeroContratante,estadoContratante,cidadeContratante,empresaContratado,cnpjContratado,ruaContratado,numeroContratado,estadoContratado,cidadeContratado,tipoContrato,carencia,valor,parcelas,inicioVigencia,finalVigencia, isContractActive, key] 
+  const dados = [empresaContratante,cnpjContratante,ruaContratante,numeroContratante,estadoContratante,cidadeContratante,empresaContratado,cnpjContratado,ruaContratado,numeroContratado,estadoContratado,cidadeContratado,tipoContrato,carencia,valor,parcelas,inicioVigencia,finalVigencia] 
   const dadosPreenchidos = dados.every(item => item !== '')
 
   const tiposContratoList = ['Empréstimos', 'Arrendamento', 'Seguro', 'Locação de Serviços', 'Equipamentos']
@@ -67,17 +66,19 @@ const NovoContrato = () => {
     parcelas,
     inicioVigencia,
     finalVigencia,
-    isContractActive,
     key,
   }
 
   //functions
+  function createContractKey() {
+    const contractKey = uuidv4()
+    setKey(contractKey)
+  }
+
   function handleSaveForm() {
     const endpoint = 'http://localhost:5000/api/salvar-formulario'
-    const contractKey = uuidv4()
-
-    setKey(contractKey)
-  
+    createContractKey()
+    
     fetch(endpoint, {
       method: 'POST',
       headers: {
@@ -88,7 +89,6 @@ const NovoContrato = () => {
       .then((response) => {
         if (response.ok) {
           setIsContractSave(true)
-          // Você pode adicionar aqui qualquer código que deseja executar após o envio bem-sucedido
         } else {
           console.error('Falha ao enviar dados.')
         }
@@ -98,25 +98,17 @@ const NovoContrato = () => {
       })
   }
 
-  function handleActiveContract () {
-    setIsContractActive(true)
-  }
-
-  function handleDesativeContract () {
-    setIsContractActive(false)
-  }
-
   return (
     <>
       <Header thisPage={'novocontrato'}/>
       
       <div className='body-component'>
       <div className='container'>
-        <h1 className='form-titulo'>Novo contrato</h1>
+        <h1>Novo contrato</h1>
         <form className='form'>
 
           <>
-          <h2 className='form-subtitulo'>Contratante</h2>
+          <h2>Contratante</h2>
           <div className='inputs'>
             <TextField helperText=" " label='Empresa' className='empresa' variant="outlined" size='small' style={{ width: '350px' }} 
             value={empresaContratante} 
@@ -218,13 +210,9 @@ const NovoContrato = () => {
           </div>
 
           <div className='button-group'>
-            <Button variant="contained" onClick={handleSaveForm}><Link to='/dashboard'>Salvar</Link></Button>
             {
-              !isContractActive ? (
-                dadosPreenchidos ? (<Button variant="contained" onClick={handleActiveContract}>Ativar Contrato</Button>)
-                : <Button variant="contained" disabled>Ativar Contrato</Button>
-              ) : 
-                <Button variant="contained" onClick={handleDesativeContract}>Desativar Contrato</Button>
+              dadosPreenchidos ? (<Button variant="contained" onClick={handleSaveForm}><Link to='/dashboard'>Salvar</Link></Button>)
+              : <Button variant="contained" disabled><Link to='/dashboard'>Salvar</Link></Button>
             }
             
           </div>

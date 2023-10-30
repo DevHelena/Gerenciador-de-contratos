@@ -2,6 +2,13 @@
 
 Gerencia os contratos de uma empresa, permitindo criar, excluir, editar e visualizar os contratos.
 
+## Autoria
+Desenvolvido por Helena de Souza Araújo Maia
+
+**E-mail:** helenaaraujo.dev@gmail.com
+
+**LinkedIn:** https://www.linkedin.com/in/helena-maia-bb632224a/
+
 ## Dependências
 
 Você precisa ter instalado em sua máquina o _Node.js_. 
